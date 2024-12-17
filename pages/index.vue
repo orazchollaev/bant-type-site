@@ -193,10 +193,6 @@ const aboutCardList = ref<any[]>([
         &::after {
           animation-delay: 1s; // Dalga zamanlamasını kaydır
         }
-
-        &:focus {
-          outline: none; // Fokus outline'ını kaldır
-        }
       }
 
       // Dalga animasyonu tanımı
