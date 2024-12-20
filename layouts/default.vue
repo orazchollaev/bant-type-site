@@ -2,11 +2,12 @@
 
 <template>
   <div class="default-layout">
-    <TheHeader></TheHeader>
+    <TheHeader />
 
     <main class="default-layout__main">
       <slot></slot>
     </main>
+    <TheFooter />
   </div>
 </template>
 

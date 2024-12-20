@@ -4,6 +4,9 @@ import CleanIcon from "~/components/icons/CleanIcon.vue";
 import LikeIcon from "~/components/icons/LikeIcon.vue";
 import AwardIcon from "~/components/icons/AwardIcon.vue";
 import PlayIcon from "~/components/icons/PlayIcon.vue";
+import TheProducts from "~/components/TheProducts.vue";
+import ThePartners from "~/components/ThePartners.vue";
+import TheContact from "~/components/TheContact.vue";
 
 definePageMeta({
   layout: "default",
@@ -35,6 +38,20 @@ const aboutCardList = ref<any[]>([
     secondColor: "#4ed9ff",
   },
 ]);
+
+import VideoModal from "~/components/VideoModal.vue";
+
+const isModalVisible = ref(false);
+const currentVideoSrc = ref("");
+
+const openModal = (videoSrc) => {
+  currentVideoSrc.value = videoSrc;
+  isModalVisible.value = true;
+};
+
+const closeModal = () => {
+  isModalVisible.value = false;
+};
 </script>
 
 <template>
@@ -47,15 +64,18 @@ const aboutCardList = ref<any[]>([
           <div
             class="page__about-card"
             v-for="cardItem in aboutCardList"
+            :key="cardItem"
             :style="{
               backgroundImage: `linear-gradient(${cardItem.firstColor}, ${cardItem.secondColor} )`,
             }"
           >
-            <component
-              :is="cardItem.icon"
-              class="page__about-card-icon"
-            ></component>
-            <span>{{ cardItem.text }}</span>
+            <div class="page__about-card-body">
+              <component
+                :is="cardItem.icon"
+                class="page__about-card-icon"
+              ></component>
+              <span class="page__text">{{ cardItem.text }}</span>
+            </div>
           </div>
         </div>
 
@@ -68,14 +88,25 @@ const aboutCardList = ref<any[]>([
 
           <div class="page__about-video-player">
             <video src="../assets/img/video.mp4"></video>
-            <button class="page__about-video-player-btn">
+            <button
+              @click="openModal('path/to/video.mp4')"
+              class="page__about-video-player-btn"
+            >
               <PlayIcon></PlayIcon>
             </button>
+            <VideoModal
+              :show="isModalVisible"
+              :videoSrc="currentVideoSrc"
+              @close="closeModal"
+            />
           </div>
         </div>
       </div>
     </div>
+    <TheProducts />
   </div>
+  <ThePartners />
+  <TheContact />
 </template>
 
 <style scoped lang="scss">
@@ -96,23 +127,30 @@ const aboutCardList = ref<any[]>([
     }
 
     &-card-list {
+      padding: 30px;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 30px;
+      gap: 40px;
       margin: 0 auto;
+      @media (max-width: 768px) {
+        gap: 30px;
+      }
+      @media (max-width: 426px) {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+      }
     }
 
     &-card {
-      width: 100%;
-      aspect-ratio: 1.1;
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      flex-direction: column;
+      width: 300px;
       color: var(--white);
       border-radius: 10px;
+      @media (max-width: 426px) {
+        width: 200px;
+      }
 
       &:hover {
         .page__about-card-icon {
@@ -125,20 +163,34 @@ const aboutCardList = ref<any[]>([
         height: 40%;
         transition: 1s;
       }
-
-      span {
-        font-size: 24px;
-        font-weight: 700;
+    }
+    &-card-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      @media (max-width: 768px) {
+        padding: 20px;
       }
     }
 
     &-bottom {
       display: flex;
+      align-items: center;
+      @media (max-width: 426px) {
+        flex-direction: column;
+        gap: 20px;
+      }
     }
 
     &-description {
+      font-size: 36px;
       width: 100%;
       flex: 1 1 50%;
+      color: var(--white);
+      @media (max-width: 768px) {
+        font-size: 20px;
+      }
     }
 
     &-video-player {
@@ -211,6 +263,13 @@ const aboutCardList = ref<any[]>([
           height: 80px;
         }
       }
+    }
+  }
+  &__text {
+    font-size: 24px;
+    font-weight: 700;
+    @media (max-width: 768px) {
+      font-size: 18px;
     }
   }
 }
