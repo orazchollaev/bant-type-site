@@ -44,7 +44,7 @@ import VideoModal from "~/components/VideoModal.vue";
 const isModalVisible = ref(false);
 const currentVideoSrc = ref("");
 
-const openModal = (videoSrc) => {
+const openModal = (videoSrc: any) => {
   currentVideoSrc.value = videoSrc;
   isModalVisible.value = true;
 };
@@ -149,7 +149,7 @@ const closeModal = () => {
       color: var(--white);
       border-radius: 10px;
       @media (max-width: 426px) {
-        width: 200px;
+        width: 220px;
       }
 
       &:hover {
@@ -160,7 +160,7 @@ const closeModal = () => {
 
       &-icon {
         width: 40%;
-        height: 40%;
+        height: 10%;
         transition: 1s;
       }
     }
@@ -168,9 +168,9 @@ const closeModal = () => {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 30px;
+      gap: 10px;
+      padding: 10px 0;
       @media (max-width: 768px) {
-        padding: 20px;
       }
     }
 

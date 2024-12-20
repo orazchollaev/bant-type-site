@@ -2,7 +2,9 @@
 import Instagram from "./icons/InstagramIcon.vue";
 import TikTok from "./icons/TikTokIcon.vue";
 import TheBurgerMenu from "./TheBurgerMenu.vue";
-// const isOpen = ref(false);
+import LangSwitcher from "./LangSwitcher.vue";
+
+const isOpen = ref<boolean>(false);
 // const currentLanguage = ref("EN"); // Default dil
 // const languages = ref({
 //   EN: "English",
@@ -36,8 +38,7 @@ import TheBurgerMenu from "./TheBurgerMenu.vue";
 // };
 
 const showBurgerMenu = () => {
-  let burgerOverlay = document.querySelector(".burger__overlay");
-  burgerOverlay?.classList.toggle("active");
+  isOpen.value = !isOpen.value;
 };
 </script>
 
@@ -49,16 +50,22 @@ const showBurgerMenu = () => {
       </a>
 
       <div class="header__link-list">
-        <nuxt-link to="#about" class="header__link"> Biz Barada</nuxt-link>
-        <nuxt-link to="#products" class="header__link">Önümlerimiz</nuxt-link>
-        <nuxt-link to="#contact" class="header__link">Habarlaşmak</nuxt-link>
+        <nuxt-link to="#about" class="header__link">{{
+          $t("about")
+        }}</nuxt-link>
+        <nuxt-link to="#products" class="header__link">{{
+          $t("products")
+        }}</nuxt-link>
+        <nuxt-link to="#contact" class="header__link">{{
+          $t("contact")
+        }}</nuxt-link>
       </div>
 
       <div class="header__right">
-        <div>
+        <!-- <div>
           <div class="dropdown" @click="toggleDropdown">
             <button class="dropdown-button">{{ currentLanguage }}</button>
-            <ul v-if="isOpen" class="dropdown-menu">
+            <ul class="dropdown-menu">
               <li
                 v-for="(language, code) in languages"
                 :key="code"
@@ -68,24 +75,36 @@ const showBurgerMenu = () => {
                 {{ language }}
               </li>
             </ul>
-          </div>
+          </div> -->
+
+        <LangSwitcher />
+
+        <div
+          @click="showBurgerMenu"
+          :class="['header__burger', { open: isOpen }]"
+        >
+          <button class="header__burger-button">
+            <span class="header__burger-button-item"></span>
+            <span class="header__burger-button-item"></span>
+            <span class="header__burger-button-item"></span>
+          </button>
         </div>
 
         <div class="header__social-media-links">
-          <Instagram width="30" height="30" />
-          <TikTok width="30" height="30" />
+          <a href="https://www.instagram.com/berk_onum" target="_blank"
+            ><Instagram width="30" height="30"
+          /></a>
+          <a href="https://www.tiktok.com/@banttape" target="_blank">
+            <TikTok width="30" height="30" />
+          </a>
         </div>
       </div>
-      <div @click="showBurgerMenu" class="header__burger">
-        <button class="header__burger-button">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-      <TheBurgerMenu />
     </div>
   </header>
+
+  <Teleport to="body">
+    <TheBurgerMenu :is-open="isOpen" @close="isOpen = false" />
+  </Teleport>
 </template>
 
 <style scoped lang="scss">
@@ -142,8 +161,9 @@ const showBurgerMenu = () => {
     display: flex;
     align-items: center;
     gap: 30px;
+
     @media (max-width: 768px) {
-      display: none;
+      gap: 10px;
     }
   }
 
@@ -155,6 +175,10 @@ const showBurgerMenu = () => {
     display: flex;
     align-items: center;
     gap: 20px;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
 
     & > * {
       cursor: pointer;
@@ -181,6 +205,26 @@ const showBurgerMenu = () => {
         background: var(--white);
         margin-bottom: 4px;
         user-select: none;
+        transition: 0.2s;
+      }
+    }
+
+    &.open {
+      .header__burger-button {
+        span {
+          margin-left: 2px;
+          &:first-child {
+            transform: rotate(45deg) translateY(11px);
+          }
+
+          &:nth-child(2) {
+            opacity: 0;
+          }
+
+          &:last-child {
+            transform: rotate(-45deg) translateY(-11px);
+          }
+        }
       }
     }
   }

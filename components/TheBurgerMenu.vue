@@ -1,20 +1,40 @@
 <script setup lang="ts">
-const closeBurger = () => {
-  let burgerOverlay = document.querySelector(".burger__overlay");
-  burgerOverlay?.classList.toggle("active");
-};
+import Instagram from "./icons/InstagramIcon.vue";
+import TikTok from "./icons/TikTokIcon.vue";
+
+const { isOpen = false } = defineProps<{
+  isOpen: boolean;
+}>();
+
+const emit = defineEmits(["close"]);
+
+onMounted(() => {
+  document.addEventListener("click", (e: any) => {
+    if (!e.target.classList.contains("header__burger-button-item")) {
+      emit("close");
+    }
+  });
+});
 </script>
 
 <template>
-  <div class="burger__overlay">
-    <button class="burger__overlay-close" @click="closeBurger">
-      <span></span>
-      <span></span>
-    </button>
+  <div :class="['burger__overlay', { active: isOpen }]">
     <div class="header__link-list">
+      <div class="burger__overlay-logo">
+        <img src="/assets/img/logo.jpg" />
+      </div>
+
       <nuxt-link to="#about" class="header__link"> Biz Barada</nuxt-link>
       <nuxt-link to="#products" class="header__link">Önümlerimiz</nuxt-link>
       <nuxt-link to="#contact" class="header__link">Habarlaşmak</nuxt-link>
+      <div class="burger__overlay-social-media">
+        <a href="https://www.instagram.com/berk_onum" target="_blank"
+          ><Instagram width="30" height="30"
+        /></a>
+        <a href="https://www.tiktok.com/@banttape" target="_blank">
+          <TikTok width="30" height="30" />
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -24,10 +44,11 @@ const closeBurger = () => {
   position: fixed;
   top: 0;
   left: 0;
-  width: 50%;
+  z-index: 11;
+  width: 80%;
   height: 100vh;
   overflow: hidden;
-  background: #fff;
+  background: var(--dark-blue);
   transform: translateX(-100%);
   transition: 0.3s ease;
   &-close {
@@ -56,6 +77,23 @@ const closeBurger = () => {
   &.active {
     transition: 0.3s ease;
     transform: translateX(0%);
+  }
+
+  &-social-media {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &-logo {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    img {
+      width: 50%;
+      height: auto;
+      border-radius: 10px;
+    }
   }
 }
 .header {

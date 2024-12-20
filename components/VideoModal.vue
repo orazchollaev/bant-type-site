@@ -1,7 +1,6 @@
 <template>
   <div v-if="show" class="modal-overlay" @click.self="closeModal">
     <div class="modal-content">
-      <button class="close-button" @click="closeModal">✖</button>
       <video src="/assets/img/video.mp4" controls autoplay>
         <source :src="videoSrc" type="video/mp4" />
         Siziň brauzeriňiz wideo görkezmegi goldamaýar.
@@ -40,7 +39,6 @@ const closeModal = () => {
   position: relative;
   padding: 20px;
   border-radius: 8px;
-  overflow: hidden;
 }
 .close-button {
   color: var(--white);

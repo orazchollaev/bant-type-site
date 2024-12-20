@@ -35,12 +35,10 @@
 
 <style scoped lang="scss">
 .contact {
-  padding: 60px 120px;
-  @media (max-width: 768px) {
-    padding: 40px 60px;
-  }
+  width: 100%;
+  padding: 20px 0;
   @media (max-width: 426px) {
-    padding: 20px;
+    padding: 10px 0px;
   }
   &__body {
     width: 100%;
@@ -62,7 +60,7 @@
 
   &__item {
     margin: 60px 50px 0 0;
-    width: 40%;
+    width: 50%;
     @media (max-width: 768px) {
       padding-right: 20px;
       margin: 30px 20px 0 0;
@@ -92,28 +90,19 @@
   &__form {
     display: flex;
     flex-direction: column;
+    gap: 10px;
     input {
+      font-family: "Nunito";
       width: 100%;
       height: 50px;
       font-size: 1rem;
       border-bottom: 1px solid#98989c;
-      padding: 15px 30px 15px 0;
-      margin-bottom: 25px;
-      @media (max-width: 768px) {
-        height: 30px;
-        padding: 10px 15px 10px 0;
-        margin-bottom: 25px;
-      }
-      @media (max-width: 426px) {
-        font-size: 16px;
-        padding: 10px 10px 10px 0;
-        margin-bottom: 15px;
-      }
     }
   }
 
   &__button {
     button {
+      font-family: "Nunito";
       font-size: 1rem;
       background: var(--red);
       color: var(--white);
@@ -133,13 +122,12 @@
   &__texta {
     textarea {
       font-family: "Nunito";
-      padding: 15px 30px 15px 0;
       margin-bottom: 25px;
       resize: none;
       font-size: 1rem;
       width: 100%;
       border-bottom: 1px solid#98989c;
-      margin-bottom: 20px;
+      margin: 10px 0;
       max-height: 160px;
       @media (max-width: 768px) {
         max-height: 100px;

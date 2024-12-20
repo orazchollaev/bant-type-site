@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from "swiper/modules";
+import "swiper/css";
 
 const Swipers = ref([
   { images: "/awtoguyc.png" },
@@ -59,16 +60,11 @@ const modules = ref<any[]>([Autoplay]);
   }
 }
 .slide-content {
-  margin-left: 20px;
-  width: 194px;
-  height: 97px;
+  width: 100%;
+  height: 100%;
   img {
-    width: 194px;
-    height: 97px;
-    @media (max-width: 426px) {
-      width: 150px;
-      height: 70px;
-    }
+    width: 100%;
+    height: auto;
   }
 }
 </style>

@@ -61,14 +61,12 @@ import Chevron from "./icons/Chevron.vue";
               <div class="info-item__icon">
                 <Message />
               </div>
-              <div class="info-item__name">
-                operationsmanager@arassadeniz.com
-              </div>
+              <div class="info-item__name">operationsmanager@banttape.com</div>
             </div>
           </div>
         </div>
         <div class="footer__copyright">
-          © 2024 All right reserved by Arassa Deniz
+          © 2024 All right reserved by Bant Tape
         </div>
       </div>
     </div>
