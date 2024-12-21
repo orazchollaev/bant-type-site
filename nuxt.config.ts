@@ -8,7 +8,9 @@ export default defineNuxtConfig({
     port: 3000,
   },
   modules: ["@nuxtjs/i18n"],
-
+  imports: {
+    autoImport: true,
+  },
   i18n: {
     locales: [
       { code: "tm", name: "Türkmençe", iso: "tm-TM", file: "tm.json" },
@@ -16,8 +18,8 @@ export default defineNuxtConfig({
       { code: "en", name: "English", iso: "en-US", file: "en.json" },
     ],
     defaultLocale: "tm",
-    lazy: true, // Dil dosyalarını lazy loading ile yükler
-    langDir: "locales/", // Dil dosyalarının bulunduğu dizin
+    langDir: "locales",
+    detectBrowserLanguage: false,
     // vueI18n: {
     //   fallbackLocale: "en",
     // },

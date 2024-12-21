@@ -11,8 +11,12 @@
   },
   "dependencies": {
     "@nuxtjs/i18n": "^9.1.1",
+    "@sendgrid/mail": "^8.1.4",
+    "axios": "^1.7.9",
     "leaflet": "^1.9.4",
+    "nodemailer": "^6.9.16",
     "nuxt": "^3.14.1592",
+    "nuxt-mail": "^5.1.1",
     "swiper": "^11.1.15",
     "vue": "latest",
     "vue-router": "latest"

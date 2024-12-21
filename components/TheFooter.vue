@@ -19,32 +19,34 @@ import Chevron from "./icons/Chevron.vue";
             </div>
           </div>
           <div class="footer__links">
-            <div class="footer__links-title">Useful Links</div>
+            <div class="footer__links-title">{{ $t("menu") }}</div>
             <div class="footer__links-link">
               <div class="footer__icon">
                 <Chevron />
               </div>
-              <nuxt-link to="#about" class="footer__link">Biz Barada</nuxt-link>
+              <nuxt-link to="#about" class="footer__link">{{
+                $t("about")
+              }}</nuxt-link>
             </div>
             <div class="footer__links-link">
               <div class="footer__icon">
                 <Chevron />
               </div>
-              <nuxt-link to="#products" class="footer__link"
-                >Önümlerimiz</nuxt-link
-              >
+              <nuxt-link to="#products" class="footer__link">{{
+                $t("products")
+              }}</nuxt-link>
             </div>
             <div class="footer__links-link">
               <div class="footer__icon">
                 <Chevron />
               </div>
-              <nuxt-link to="#contact" class="footer__link"
-                >Habarlaşmak</nuxt-link
-              >
+              <nuxt-link to="#contact" class="footer__link">{{
+                $t("contact")
+              }}</nuxt-link>
             </div>
           </div>
           <div class="footer__info">
-            <div class="footer__info-title">Contact info</div>
+            <div class="footer__info-title">{{ $t("contactInfo") }}</div>
             <div class="footer__info-item">
               <div class="info-item__icon">
                 <Home />
@@ -66,7 +68,7 @@ import Chevron from "./icons/Chevron.vue";
           </div>
         </div>
         <div class="footer__copyright">
-          © 2024 All right reserved by Bant Tape
+          {{ $t("copyright") }}
         </div>
       </div>
     </div>

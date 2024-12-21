@@ -26,7 +26,7 @@ const TheProducts = ref([
     <div class="products__container">
       <div class="products__body">
         <div class="products__titles">
-          <h2 class="products__title">Önümlerimiz</h2>
+          <h2 class="products__title">{{ $t("products") }}</h2>
           <p>
             Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper
             libero, sit amet <br />

@@ -12,32 +12,40 @@ definePageMeta({
   layout: "default",
 });
 
-const aboutCardList = ref<any[]>([
-  {
-    icon: markRaw(TapeIcon),
-    text: "Quality",
-    firstColor: "#c000c0",
-    secondColor: "#f000f0",
-  },
-  {
-    icon: markRaw(CleanIcon),
-    text: "Clean",
-    firstColor: "#ff90ac",
-    secondColor: "#ffc6cf",
-  },
-  {
-    icon: markRaw(LikeIcon),
-    text: "Most export",
-    firstColor: "#2134ff",
-    secondColor: "#7184ff",
-  },
-  {
-    icon: markRaw(AwardIcon),
-    text: "Global",
-    firstColor: "#1e99f7",
-    secondColor: "#4ed9ff",
-  },
-]);
+useHead({
+  title: "Bant Tape",
+});
+
+const { t } = useI18n();
+
+const aboutCardList = computed<any[]>(() => {
+  return [
+    {
+      icon: markRaw(TapeIcon),
+      text: `${t("quality")}`,
+      firstColor: "#c000c0",
+      secondColor: "#f000f0",
+    },
+    {
+      icon: markRaw(CleanIcon),
+      text: `${t("clean")}`,
+      firstColor: "#ff90ac",
+      secondColor: "#ffc6cf",
+    },
+    {
+      icon: markRaw(LikeIcon),
+      text: `${t("mostExport")}`,
+      firstColor: "#2134ff",
+      secondColor: "#7184ff",
+    },
+    {
+      icon: markRaw(AwardIcon),
+      text: `${t("global")}`,
+      firstColor: "#1e99f7",
+      secondColor: "#4ed9ff",
+    },
+  ];
+});
 
 import VideoModal from "~/components/VideoModal.vue";
 
@@ -73,6 +81,7 @@ const closeModal = () => {
               <component
                 :is="cardItem.icon"
                 class="page__about-card-icon"
+                style="width: 40%; height: 5%"
               ></component>
               <span class="page__text">{{ cardItem.text }}</span>
             </div>
@@ -81,9 +90,7 @@ const closeModal = () => {
 
         <div class="page__about-bottom">
           <span class="page__about-description">
-            Zawod 2014 nji yyl Noyabr ayynda işe başlady. Biziñ harytlarymyz
-            önümçilikde harytlary gutulara gaplamada ulanylyar, Awtoulaglary,
-            reñklemekde Mebel önümçiliginde ulanylyar
+            {{ $t("description") }}
           </span>
 
           <div class="page__about-video-player">
@@ -130,17 +137,12 @@ const closeModal = () => {
       padding: 30px;
       width: 100%;
       display: flex;
-      align-items: center;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 40px;
       margin: 0 auto;
       @media (max-width: 768px) {
         gap: 30px;
-      }
-      @media (max-width: 426px) {
-        flex-direction: column;
-        padding: 20px;
-        gap: 20px;
       }
     }
 
@@ -148,6 +150,9 @@ const closeModal = () => {
       width: 300px;
       color: var(--white);
       border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+
       @media (max-width: 426px) {
         width: 220px;
       }
@@ -159,8 +164,6 @@ const closeModal = () => {
       }
 
       &-icon {
-        width: 40%;
-        height: 10%;
         transition: 1s;
       }
     }

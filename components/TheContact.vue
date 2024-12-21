@@ -1,20 +1,34 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const name = ref("");
+const email = ref("");
+const phone = ref("");
+const message = ref("");
+</script>
 
 <template>
   <div class="contact" id="contact">
     <div class="contact__container">
       <div class="contact__body">
         <div class="contact__item">
-          <div class="contact__title">Habarlaşmak</div>
+          <div class="contact__title">{{ $t("contact") }}</div>
           <form class="contact__form">
-            <input type="text" placeholder="Your Name" />
-            <input type="email" placeholder="Your Email" />
-            <input type="text" placeholder="Phone" />
+            <input v-model="name" type="text" :placeholder="$t('yourName')" />
+            <input
+              v-model="email"
+              type="email"
+              :placeholder="$t('yourEmail')"
+            />
+            <input v-model="phone" type="text" :placeholder="$t('yourPhone')" />
           </form>
           <div class="contact__texta">
-            <textarea rows="10" cols="30" placeholder="Message"></textarea>
+            <textarea
+              v-model="message"
+              rows="10"
+              cols="30"
+              :placeholder="$t('yourMessage')"
+            ></textarea>
             <div class="contact__button">
-              <button>Send Message</button>
+              <button>{{ $t("send") }}</button>
             </div>
           </div>
         </div>
